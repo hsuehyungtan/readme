@@ -5,7 +5,7 @@
         <div class="editor__heading-text" v-text="$t('POST_EDITOR.EDITOR')"></div>
         <div class="editor__heading-switch" @click="$_quillEditor_toggleHtml">&lt; / &gt;</div>
       </div> -->
-      <div id="toolbar" v-show="isInitialized">
+      <div :id="`toolbar-${index}`" v-show="isInitialized">
         <span class="ql-formats">
           <select class="ql-color"></select>   
           <button class="ql-bold"></button>
@@ -78,7 +78,7 @@ export default {
         // formats: [ 'bold', 'color', 'header', 'italic', 'blockquote', 'code-block', 'link', 'image', 'video', 'hr', 'figcaption', ],
         modules: {
           toolbar: {
-            container: '#toolbar',
+            container: `#toolbar-${this.index}`,
             handlers: {
               store: this.$store,
               'image': this.$_quillEditor_imageHandler,
@@ -152,6 +152,10 @@ export default {
     content: {
       default: '',
     },
+    index: {
+      type: Number,
+      default: 1
+    }
   },  
   watch: {
     content () {

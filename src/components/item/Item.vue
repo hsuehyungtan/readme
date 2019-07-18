@@ -41,6 +41,10 @@
       :fetchData="itemObj.fetchData"
       :id="refVals[ 'id' ]"
       :options.sync="value"></MediaOptions>
+    <ContentOptions v-else-if="itemObj.type === 'ContentOptions'"
+      :fetchData="itemObj.fetchData"
+      :id="refVals[ 'id' ]"
+      :options.sync="value"></ContentOptions>
     <CheckboxItem v-else-if="itemObj.type === 'CheckboxItem'"
       theme="editor"
       :text="$t(`${modelName}.${itemObj.subText}`)"
@@ -65,6 +69,7 @@
   import BooleanSwitcher from 'src/components/form/BooleanSwitcher.vue'
   import ButtunizedItem from 'src/components/form/ButtunizedItem.vue'
   import CheckboxItem from 'src/components/form/CheckboxItem.vue'
+  import ContentOptions from 'src/components/form/ContentOptions.vue'
   import DatetimeItem from 'src/components/form/DatetimeItem.vue'
   import Dropdownlist from 'src/components/form/Dropdownlist.vue'
   import ItemEditorLayout from 'src/components/item/ItemEditorLayout.vue'
@@ -88,6 +93,7 @@
       BooleanSwitcher,
       ButtunizedItem,
       CheckboxItem,
+      ContentOptions,
       DatetimeItem,
       Dropdownlist,
       ItemEditorLayout,

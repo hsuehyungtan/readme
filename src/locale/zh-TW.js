@@ -3,7 +3,6 @@ export default {
   'LOGIN': {
     'ACCOUNT': '帳號',
     'PASSWORD': '密碼',
-    'KEEP_ALIVE': '保持登入',
     'GO_LOGIN': '登入',
     'INPUT_HINT': {
       'ACCOUNT': '請輸入您的帳號',
@@ -215,6 +214,11 @@ export default {
   'EDITOR': {
     'SAVE': '存檔',
     'CANCEL': '取消',  
+    'CONTENT_OPTIONS': {
+      'GEN': '新增新聞卡',
+      'SUBTITLE': '副標',
+      'TITLE': '標題'
+    },
     'PREVIEW': '預覽',
     'UNAUTHORIZED_HOST': '你使用了不被信任的網站資源，目前僅接受來自以下網站的資源，且須通過 https 協定。',
     'UNAUTHORIZED_HOST_HINT': '目前支援的網站：{hosts}',    
@@ -222,6 +226,7 @@ export default {
       'ADVANCED': '進階設定',
       'BASIC': '基本設定',
       'CONTENT': '內容設定',
+      'CUSTOM': '頁面設定',
       'EMBED': '嵌入設定',
       'NONE': '',
       'INFO': '資訊',
@@ -273,6 +278,9 @@ export default {
       'GENERATE': '新增素材',
       'TAKE_UP': '使用此素材',
     },
+    'COLOR_PICKER': {
+      'DESCRIPTION': '請選取背景顏色',
+    }
   },
   'POLL': {
     'NEW': '新增投票',
@@ -325,7 +333,11 @@ export default {
     'UPDATED_AT': '更新時間',
     'CREATED_AT': '建立時間',
     'PUBLISHED_AT': '發佈時間',
+    'CARDS': '新聞卡',
     'CONTENT': '內容',
+    'NARRATIVE': '敘述',
+    'CSS': 'CSS',
+    'JAVASCRIPT': 'Javascipt',
     'UPDATED_BY': '最後更新人',
     'HERO_IMAGE': '首圖',
     'TYPE': '樣式',
@@ -336,6 +348,7 @@ export default {
     'TYPE_REPORT': '報導',
     'TYPE_VIDEO': '影音',
     'TYPE_LIVE': '直播',
+    'TYPE_CARD': '新聞卡',
     'PROJECT_ID': '所屬專題',
     'OG_DESCRIPTION': 'OG 說明',
     'OG_TITLE': 'OG 標題',

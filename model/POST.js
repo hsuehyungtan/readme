@@ -45,6 +45,8 @@ const typeOpts = (store, { vueInstance }) => new Promise(resolve => {
   resolve(opts)
 })
 
+const isSupposedToShowWithTypeExcludeCard = data => get(data, 'type') != POST_TYPE.CARD
+const isSupposedToShowWithTypeCard = data => get(data, 'type') == POST_TYPE.CARD
 const isSupposedToShowWithTypeReport = data => get(data, 'type') == POST_TYPE.REPORT
 const isSupposedToShowWithTypeReview = data => { return get(data, 'type') == POST_TYPE.REVIEW }
 const isSupposedToShowWithTypeNewsOrReview = data => { return get(data, 'type') == POST_TYPE.NEWS || get(data, 'type') == POST_TYPE.REVIEW }
@@ -64,7 +66,8 @@ export const model = [
   { name: 'postOrder', type: 'TextInput', group: 'basic', isEditable: true, isListable: false, isNumSentitive: true, },
 
   { name: 'title', type: 'TextInput', group: 'content', listWidth: { min: '340', max: '10000' }, isEditable: true, isListable: true, isEditEntry: true, order: { list: 1.5, editor: 1 }, required: true, },
-  { name: 'content', type: 'ContentEditor', group: 'content', isEditable: true, isListable: false, order: { editor: 2 }, },
+  // For post.type === news || review || report || memo
+  { name: 'content', type: 'ContentEditor', group: 'content', isEditable: true, isListable: false, order: { editor: 2 }, watcher: 'type', showWith: isSupposedToShowWithTypeExcludeCard },
 
   // For post.type === review
   { name: 'link', type: 'TextInput', group: 'content', isEditable: true, isListable: false, isHidden: false, watcher: 'type', showWith: isSupposedToShowWithTypeReview, },
@@ -74,10 +77,16 @@ export const model = [
   { name: 'heroImage', type: 'AssetPicker', group: 'content', listWidth: { min: '180', max: '180' }, isEditable: true, isListable: false, watcher: 'type', showWith: isSupposedToShowWithTypeReport, acceptedFileTypes: [ 'image/*' ], },
   { name: 'slug', type: 'TextInput', group: 'content', isEditable: true, isListable: false, watcher: 'type', showWith: isSupposedToShowWithTypeReport, },
 
-
   // For post.type === news || review
   { name: 'tags', type: 'TextTagItem', group: 'content', isEditable: true, isListable: false, map: { name: 'text', value: 'id', isValArraySensitive: true, }, autocomplete: tagsAutoComplete, showWith: isSupposedToShowWithTypeNewsOrReview, },
   
+  // For post.type === card
+  { name: 'narrative', type: 'TextareaInput', group: 'content', isEditable: true, isListable: false, isHidden: false, autoHeightActive: true, showWith: isSupposedToShowWithTypeCard },
+  { name: 'cards', type: 'ContentOptions', group: 'content', isEditable: true, isListable: false, isHidden: false, default: [], showWith: isSupposedToShowWithTypeCard },
+
+  { name: 'css', type: 'TextareaInput', group: 'custom', isEditable: true, isListable: false, isHidden: false, autoHeightActive: true, showWith: isSupposedToShowWithTypeCard },
+  { name: 'javascript', type: 'TextareaInput', group: 'custom', isEditable: true, isListable: false, isHidden: false, autoHeightActive: true, showWith: isSupposedToShowWithTypeCard },
+
   // For post.type === news
   { name: 'ogTitle', type: 'TextInput', group: 'share', isEditable: true, isListable: false, isHidden: false, autoHeightActive: true, },
   { name: 'ogDescription', type: 'TextareaInput', group: 'share', isEditable: true, isListable: false, isHidden: false, autoHeightActive: true, },
@@ -85,7 +94,7 @@ export const model = [
 
 ]
 
-export const groups = [ 'info', 'basic', 'content', 'share' ]
+export const groups = [ 'info', 'basic', 'content', 'custom', 'share' ]
 export const isPreviewable = true
 export const previewHost = 'https://www.readr.tw/post'
 export const LIST_MAXRESULT = 15
